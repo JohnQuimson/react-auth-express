@@ -2,8 +2,8 @@ import { useState } from 'react';
 import axios from '../utils/axiosClient.js';
 // const apiUrl = import.meta.env.VITE_BASE_API_URL;
 
-export default function Form({ tags, categories, onSubmit }) {
-  const initialData = {
+export default function Form({ initialData, tags, categories, onSubmit }) {
+  const defaultData = initialData || {
     title: '',
     img: '',
     content: '',
@@ -12,7 +12,7 @@ export default function Form({ tags, categories, onSubmit }) {
     published: true,
   };
 
-  const [formData, setFormData] = useState(initialData);
+  const [formData, setFormData] = useState(defaultData);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -31,7 +31,7 @@ export default function Form({ tags, categories, onSubmit }) {
 
       if (res.status < 400) {
         onSubmit();
-        setFormData(initialData);
+        setFormData(defaultData);
       }
     } catch (error) {
       console.error('Errore durante la creazione del post:', error);
@@ -147,8 +147,8 @@ export default function Form({ tags, categories, onSubmit }) {
         <form onSubmit={handleSubmit} className="form-container">
           <h2>Aggiungi un nuovo post</h2>
           <div className="form-fields">
-            {Object.keys(initialData).map((objKey) =>
-              renderField(objKey, initialData[objKey])
+            {Object.keys(defaultData).map((objKey) =>
+              renderField(objKey, defaultData[objKey])
             )}
           </div>
           <button className="btn btn-success">Aggiungi</button>

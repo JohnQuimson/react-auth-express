@@ -26,6 +26,11 @@ const SinglePost = () => {
 
   console.log(post);
 
+  const deletePost = async (id) => {
+    await axios.delete(`/posts/${id}`);
+    navigate('/posts');
+  };
+
   return (
     <>
       <Link to="../" relative="path">
@@ -33,7 +38,7 @@ const SinglePost = () => {
       </Link>
 
       <h2>Post Title: {post.title}</h2>
-      {/* <p>Category: {post.category.name}</p> */}
+      {/* <p>Category: {post.category}</p> */}
       <p>Content: {post.content}</p>
       <p>Published: {post.published ? 'Yes' : 'No'}</p>
       <p>Tags: {post.tags.map((tag) => tag.name).join(', ')}</p>

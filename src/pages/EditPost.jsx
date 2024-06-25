@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 import { Link, useNavigate, useParams } from 'react-router-dom';
 import Form from '../components/Form';
 
-export default function () {
+export default function ({ tags, categories }) {
   const { id } = useParams();
 
   const navigate = useNavigate();
@@ -11,15 +11,14 @@ export default function () {
   const [dataToEdit, setDataToEdit] = useState(null);
 
   const fetchDataToEdit = async () => {
-    const url = `/posts/${id}`;
-    const { data: p } = await axios.get(url);
+    const { data: p } = await axios.get(`/posts/${id}`);
+
     setDataToEdit({
-      name: p.name,
-      description: p.description,
-      image: '',
-      price: p.price,
-      available: p.available,
-      ingredients: p.ingredients.map((i) => i.id),
+      title: p.title,
+      content: p.content,
+      img: '',
+      published: p.published,
+      tags: p.tags.map((i) => i.id),
       categoryId: p.categoryId,
     });
   };
@@ -32,7 +31,7 @@ export default function () {
   }, [id]);
 
   const updatePost = async (formData) => {
-    console.log(formData);
+    console.log('formData', formData);
     //logica per salvare il post nel database
     const res = await axios.put(`/posts/${id}`, formData, {
       headers: {
@@ -59,7 +58,12 @@ export default function () {
       {dataToEdit === null ? (
         <div>Loading...</div>
       ) : (
-        <Form initialData={dataToEdit} onSubmit={updatePost} />
+        <Form
+          initialData={dataToEdit}
+          tags={tags}
+          categories={categories}
+          onSubmit={updatePost}
+        />
       )}
     </div>
   );

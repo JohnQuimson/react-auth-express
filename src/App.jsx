@@ -72,7 +72,10 @@ const App = () => {
               }
             >
               <Route path="posts">
-                <Route path=":id/edit" element={<EditPost />} />
+                <Route
+                  path=":id/edit"
+                  element={<EditPost tags={tags} categories={categories} />}
+                />
                 <Route
                   path="create"
                   element={<CreatePost tags={tags} categories={categories} />}
