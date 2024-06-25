@@ -15,6 +15,7 @@ const AuthProvider = ({ children }) => {
     try {
       const { data: response } = await axios.post('/auth/login', payload);
       setUser(response.data);
+      localStorage.setItem('accessToken', response.token);
       navigate(redirectTo || '/');
     } catch (err) {
       const { errors } = err.response.data;

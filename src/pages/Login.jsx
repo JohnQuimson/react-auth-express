@@ -5,8 +5,8 @@ export default function () {
   const { login } = useAuth();
 
   const initialData = {
-    email: '',
-    password: '',
+    email: 'john@gmail.com',
+    password: 'Password',
   };
   const [formData, setFormData] = useState(initialData);
 
