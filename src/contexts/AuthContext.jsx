@@ -5,8 +5,8 @@ import useStorage from '../hooks/useStorage';
 const AuthContext = createContext();
 
 const AuthProvider = ({ children }) => {
-  // const [isLoggedIn, setIsLoggedIn] = useStorage(false, 'isLoggedIn'); //se vuoi usare il localStorage
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useStorage(false, 'isLoggedIn'); //se vuoi usare il localStorage
+  //const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   const navigate = useNavigate();
 
