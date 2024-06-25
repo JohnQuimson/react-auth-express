@@ -1,6 +1,5 @@
-import { useLocation } from 'react-router-dom';
-import { useAuth } from '../contexts/AuthContext';
 import { useState } from 'react';
+import { useAuth } from '../contexts/AuthContext';
 
 export default function () {
   const { login } = useAuth();
@@ -9,36 +8,51 @@ export default function () {
     email: '',
     password: '',
   };
-
   const [formData, setFormData] = useState(initialData);
 
-  // constChangeData = (key, value) => {
-  //   setFormData((curr) => ({
-  //     ...curr,
-  //     [key]: value,
-  //   }));
-  // };
+  const [loginError, setLoginError] = useState(null);
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    login();
-    setFormData(initialData);
+  const changeData = (key, value) => {
+    setFormData((curr) => ({
+      ...curr,
+      [key]: value,
+    }));
   };
 
-  const { state } = useLocation();
-  const { redirectTo } = state || {};
-
-  const handleLogin = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    login(null, redirectTo || '');
+    try {
+      await login(formData);
+      setFormData(initialData);
+    } catch (err) {
+      setLoginError(err);
+    }
   };
 
   return (
     <>
-      <form onSubmit={handleLogin}>
-        <input type="text" placeholder="email" />
-        <input type="password" placeholder="password" />
-        <button>Login</button>
+      <h1>Login</h1>
+      <form onSubmit={handleSubmit}>
+        <input
+          type="text"
+          placeholder="Email"
+          value={formData.email}
+          onChange={(e) => changeData('email', e.target.value)}
+        />
+        <input
+          type="password"
+          placeholder="Password"
+          value={formData.password}
+          onChange={(e) => changeData('password', e.target.value)}
+        />
+        {loginError !== null && (
+          <div className="error">{loginError.message}</div>
+        )}
+        {loginError?.errors &&
+          loginError.errors.map((err, index) => (
+            <div key={`err${index}`}>{err.msg}</div>
+          ))}
+        <button>Loggati</button>
       </form>
     </>
   );
