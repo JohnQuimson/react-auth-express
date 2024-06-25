@@ -1,0 +1,160 @@
+// * {
+//   box-sizing: border-box;
+//   margin: 0;
+//   padding: 0;
+// }
+
+// ul {
+//   list-style-type: none;
+// }
+
+// header {
+//   background: rgba(255, 255, 255, 0.2);
+//   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+//   backdrop-filter: blur(5px);
+//   -webkit-backdrop-filter: blur(5px);
+//   height: 10vh;
+//   display: flex;
+//   justify-content: center;
+//   align-items: center;
+//   position: fixed;
+//   top: 0;
+//   right: 0;
+//   left: 0;
+//   color: white;
+//   text-transform: uppercase;
+// }
+
+// main {
+//   background: rgb(0, 0, 0);
+//   background: linear-gradient(
+//     143deg,
+//     rgba(0, 0, 0, 1) 0%,
+//     rgba(39, 34, 64, 1) 57%,
+//     rgba(29, 19, 77, 1) 89%
+//   );
+//   height: 100vh;
+//   display: flex;
+//   flex-direction: row; /* Imposta il layout principale in riga */
+//   align-items: flex-start; /* Allinea gli elementi in alto */
+
+//   #form-section {
+//     padding: 20px;
+//     border: 1px solid #ccc;
+//     border-radius: 8px;
+//     background-color: #f9f9f9;
+//     display: flex;
+//     width: 80%;
+//     margin: 15vh auto;
+//     gap: 20px;
+//     overflow: hidden;
+
+//     form {
+//       display: flex;
+//       flex-direction: column;
+//       gap: 10px;
+//       width: 50%;
+
+//       h2 {
+//         text-align: center;
+//         margin-bottom: 20px;
+//       }
+
+//       label {
+//         display: flex;
+//         align-items: center;
+//       }
+
+//       input[type='text'],
+//       input[type='number'],
+//       select {
+//         width: 100%;
+//         padding: 8px;
+//         font-size: 16px;
+//         border: 1px solid #ccc;
+//         border-radius: 4px;
+//       }
+
+//       input[type='checkbox'] {
+//         margin: 0 5px;
+//       }
+
+//       button {
+//         padding: 10px 30px;
+//         font-size: 18px;
+//         background-color: #4c00ff;
+//         color: white;
+//         border: none;
+//         border-radius: 4px;
+//         cursor: pointer;
+//         align-self: center;
+
+//         &:hover {
+//           background-color: transparent;
+//           border: 2px solid #4c00ff;
+//           color: #4c00ff;
+//           transition: all 0.3s;
+//         }
+//       }
+//     }
+//   }
+
+//   .articles {
+//     width: 50%;
+//     display: flex;
+//     flex-direction: column;
+//     justify-content: flex-start;
+//     overflow-y: scroll;
+//     height: calc(100vh - 40vh);
+
+//     .articlesTitle {
+//       text-align: center;
+//       margin-bottom: 20px;
+//     }
+
+//     .subtitle {
+//       text-align: center;
+//       margin-top: 20px;
+//       color: #777;
+//     }
+
+//     .article {
+//       padding: 20px;
+//       border: 1px solid #ccc;
+//       border-radius: 8px;
+//       background-color: #fff;
+//       margin-bottom: 20px;
+
+//       h3 {
+//         font-size: 24px;
+//         margin-bottom: 10px;
+//       }
+
+//       ul {
+//         margin-top: 5px;
+//         padding-left: 20px;
+//       }
+
+//       .card-image {
+//         margin-top: 10px;
+
+//         img {
+//           max-width: 100%;
+//           height: auto;
+//           border-radius: 4px;
+//         }
+//       }
+
+//       &.hidden {
+//         opacity: 0.5;
+//         pointer-events: none;
+//       }
+//     }
+//   }
+
+//   h4 {
+//     font-size: 18px;
+//     margin: 20px 0;
+//     color: #777;
+//   }
+// }
