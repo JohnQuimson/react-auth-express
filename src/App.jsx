@@ -3,7 +3,8 @@ import Header from './components/Header';
 import Main from './components/Main';
 import { useEffect, useState } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import axios from 'axios';
+import axios from './utils/axiosClient.js';
+// import axios from 'axios';
 import Form from './components/Form';
 import ElencoPost from './components/ElencoPost';
 import Home from './pages/Home';
@@ -15,25 +16,39 @@ import { AuthProvider } from './contexts/AuthContext';
 import DashboardLayout from './layouts/DashboardLayout';
 import PrivatePage from './middlewares/PrivatePage';
 import Login from './pages/Login';
+import EditPost from './pages/EditPost';
+import CreatePost from './pages/CreatePost';
+import AdminPage from './middlewares/AdminPage';
 
 const App = () => {
+  const [tags, setTags] = useState([]);
+  const [categories, setCategories] = useState([]);
+
+  const fetchData = async () => {
+    const { data: tagsData } = await axios.get(`/tags`);
+    const { data: categoriesData } = await axios.get(`/categories`);
+    setTags(tagsData);
+    setCategories(categoriesData);
+    console.log({ tagsData, categoriesData });
+  };
+
+  useEffect(() => {
+    fetchData();
+  }, []);
+
   return (
     <>
       <BrowserRouter>
         <AuthProvider>
           <Routes>
-            {/* Pubbliche */}
+            {/* Rotte Pubbliche */}
             <Route path="/" element={<DefaultLayout />}>
-              <Route index element={<Home />}></Route>
-              <Route path="login" element={<Login />}></Route>
-              {/* <Route path="posts">
-                <Route index element={<Posts />} />
-                <Route path=":id">
-                  <Route index element={<SinglePost />} />
-                </Route>
-              </Route> */}
+              <Route index element={<Home />} />
+              <Route path="login" element={<Login />} />
+              <Route path="posts" element={<Posts />} />
             </Route>
-            {/* Private */}
+
+            {/* Rotte Private */}
             <Route
               path="/"
               element={
@@ -42,11 +57,26 @@ const App = () => {
                 </PrivatePage>
               }
             >
+              <Route path="posts/:id" element={<SinglePost />} />
+            </Route>
+
+            {/* Rotte Admin */}
+            <Route
+              path="/"
+              element={
+                <PrivatePage>
+                  <AdminPage>
+                    <DefaultLayout />
+                  </AdminPage>
+                </PrivatePage>
+              }
+            >
               <Route path="posts">
-                <Route index element={<Posts />} />
-                <Route path=":id">
-                  <Route index element={<SinglePost />} />
-                </Route>
+                <Route path=":id/edit" element={<EditPost />} />
+                <Route
+                  path="create"
+                  element={<CreatePost tags={tags} categories={categories} />}
+                />
               </Route>
             </Route>
           </Routes>

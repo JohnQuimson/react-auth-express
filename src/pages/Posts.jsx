@@ -14,6 +14,9 @@ const Posts = () => {
   return (
     <>
       <h1>POSTS</h1>
+      <Link to="create" className="btn btn-success">
+        aggiungi post
+      </Link>
       {posts === null ? (
         <p>Loading...</p>
       ) : (

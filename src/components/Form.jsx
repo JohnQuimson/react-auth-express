@@ -2,7 +2,7 @@ import { useState } from 'react';
 import axios from '../utils/axiosClient.js';
 // const apiUrl = import.meta.env.VITE_BASE_API_URL;
 
-export default function Form({ tags, categories, onCreate }) {
+export default function Form({ tags, categories, onSubmit }) {
   const initialData = {
     title: '',
     img: '',
@@ -16,6 +16,7 @@ export default function Form({ tags, categories, onCreate }) {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    onSubmit(formData);
 
     try {
       console.log('formdata', formData);
@@ -29,7 +30,7 @@ export default function Form({ tags, categories, onCreate }) {
       const res = await axios.post(`/posts`, payload);
 
       if (res.status < 400) {
-        onCreate();
+        onSubmit();
         setFormData(initialData);
       }
     } catch (error) {
