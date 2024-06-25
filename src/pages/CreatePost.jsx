@@ -1,4 +1,4 @@
-import { Link, Navigate, useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import axios from '../utils/axiosClient';
 import Form from '../components/Form';
 
@@ -29,7 +29,7 @@ export default function ({ tags, categories }) {
       <Form
         tags={tags}
         categories={categories}
-        onSubmit={(data) => navigate(`posts/${data.slug}`)}
+        onSubmit={() => (window.location.href = 'http://localhost:5173/posts')}
       />
     </div>
   );
