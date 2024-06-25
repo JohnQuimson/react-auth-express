@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import axios from '../utils/axiosClient.js';
 // const apiUrl = import.meta.env.VITE_BASE_API_URL;
 
@@ -28,6 +28,10 @@ const SinglePost = () => {
 
   return (
     <>
+      <Link to="../" relative="path">
+        Torna indietro
+      </Link>
+
       <h2>Post Title: {post.title}</h2>
       {/* <p>Category: {post.category.name}</p> */}
       <p>Content: {post.content}</p>

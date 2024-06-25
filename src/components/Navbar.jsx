@@ -18,8 +18,8 @@ const Navbar = () => {
 
   return (
     <header>
-      <nav className="navbar">
-        <menu>
+      <nav className="navbar ">
+        <menu className="d-flex">
           {urlPages.map(({ label, href }, i) => (
             <li key={`urlPage${i}`}>
               <NavLink to={href}>{label}</NavLink>
@@ -27,7 +27,9 @@ const Navbar = () => {
           ))}
           {isLoggedIn && (
             <li>
-              <button onClick={logout}>Logout</button>
+              <button className="btn btn-danger" onClick={logout}>
+                Logout
+              </button>
             </li>
           )}
         </menu>

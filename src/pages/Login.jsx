@@ -52,7 +52,7 @@ export default function () {
           loginError.errors.map((err, index) => (
             <div key={`err${index}`}>{err.msg}</div>
           ))}
-        <button>Loggati</button>
+        <button className="btn btn-warning">Loggati</button>
       </form>
     </>
   );

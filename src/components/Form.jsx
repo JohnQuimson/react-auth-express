@@ -151,7 +151,7 @@ export default function Form({ tags, categories, onSubmit }) {
               renderField(objKey, initialData[objKey])
             )}
           </div>
-          <button className="button-css">Aggiungi</button>
+          <button className="btn btn-success">Aggiungi</button>
         </form>
       </div>
     </>
