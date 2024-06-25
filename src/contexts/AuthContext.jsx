@@ -6,16 +6,15 @@ import axios from '../utils/axiosClient.js';
 const AuthContext = createContext();
 
 const AuthProvider = ({ children }) => {
-  const [isLoggedIn, setIsLoggedIn] = useStorage(false, 'isLoggedIn'); //se vuoi usare il localStorage
-  //const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [user, setUser] = useStorage(null, 'user');
+  const isLoggedIn = user !== null;
 
   const navigate = useNavigate();
 
   const login = async (payload, redirectTo) => {
     try {
       const { data: response } = await axios.post('/auth/login', payload);
-      console.log(response);
-      setIsLoggedIn(true);
+      setUser(response.data);
       navigate(redirectTo || '/');
     } catch (err) {
       const { errors } = err.response.data;
@@ -28,11 +27,12 @@ const AuthProvider = ({ children }) => {
   };
 
   const logout = () => {
-    setIsLoggedIn(false);
+    setUser(null);
     navigate('/login');
   };
 
   const values = {
+    user,
     isLoggedIn,
     login,
     logout,
