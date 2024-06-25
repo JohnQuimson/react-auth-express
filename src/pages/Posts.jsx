@@ -1,13 +1,12 @@
 import React, { useEffect, useState } from 'react';
-import axios from 'axios';
-const apiUrl = import.meta.env.VITE_BASE_API_URL;
+import axios from '../utils/axiosClient.js';
 import { Link } from 'react-router-dom';
 
 const Posts = () => {
   const [posts, setPosts] = useState(null);
 
   useEffect(() => {
-    axios.get(`${apiUrl}/posts`).then(({ data }) => setPosts(data));
+    axios.get(`/posts`).then(({ data }) => setPosts(data));
   }, []);
 
   console.log('POST', posts);

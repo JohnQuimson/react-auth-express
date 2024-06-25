@@ -1,6 +1,6 @@
 import { useState } from 'react';
-import axios from 'axios';
-const apiUrl = import.meta.env.VITE_BASE_API_URL;
+import axios from '../utils/axiosClient.js';
+// const apiUrl = import.meta.env.VITE_BASE_API_URL;
 
 export default function Form({ tags, categories, onCreate }) {
   const initialData = {
@@ -26,7 +26,7 @@ export default function Form({ tags, categories, onCreate }) {
         tags: formData.tags.map((tag) => parseInt(tag)),
       };
 
-      const res = await axios.post(`${apiUrl}/posts`, payload);
+      const res = await axios.post(`/posts`, payload);
 
       if (res.status < 400) {
         onCreate();

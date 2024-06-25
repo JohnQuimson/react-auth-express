@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import axios from 'axios';
-const apiUrl = import.meta.env.VITE_BASE_API_URL;
+import axios from '../utils/axiosClient.js';
+// const apiUrl = import.meta.env.VITE_BASE_API_URL;
 
 const SinglePost = () => {
   const { id } = useParams();
@@ -10,7 +10,7 @@ const SinglePost = () => {
   useEffect(() => {
     const fetchPost = async () => {
       try {
-        const response = await axios.get(`${apiUrl}/posts/${id}`);
+        const response = await axios.get(`/posts/${id}`);
         setPost(response.data);
       } catch (error) {
         console.error('Error fetching the post:', error);
